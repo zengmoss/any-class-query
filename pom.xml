@@ -18,7 +18,6 @@
 		<commons-lang3.version>3.7</commons-lang3.version>
 		<hibernate-core.version>5.2.17.Final</hibernate-core.version>
 	</properties>
-
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework</groupId>

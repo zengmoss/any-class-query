@@ -7,7 +7,7 @@ import java.util.function.Function;
 
 import javax.persistence.EntityManager;
 
-import org.hibernate.SQLQuery;
+import org.hibernate.Query;
 import org.hibernate.transform.ResultTransformer;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.BeanWrapper;
@@ -25,12 +25,12 @@ public class AnyClassQuery {
 		super();
 	}
 
-	public static SQLQuery createSQLQuery(EntityManager entityManager, String sql, Object[] parameters) {
-		return createSQLQuery(entityManager, sql, parameters, 0);
+	public static Query createSQLQuery(EntityManager entityManager, String sql, Object... parameters) {
+		return createSQLQuery(entityManager, sql, 0, parameters);
 	}
 
-	public static SQLQuery createSQLQuery(EntityManager entityManager, String sql, Object[] parameters, int start) {
-		SQLQuery nativeQueryImpl = entityManager.createNativeQuery(sql).unwrap(SQLQuery.class);
+	public static Query createSQLQuery(EntityManager entityManager, String sql, int start, Object... parameters) {
+		Query nativeQueryImpl = entityManager.createNativeQuery(sql).unwrap(Query.class);
 		if (null != parameters && parameters.length > 0) {
 			for (int i = 0; i < parameters.length; i++) {
 				nativeQueryImpl.setParameter(i + start, parameters[i]);
