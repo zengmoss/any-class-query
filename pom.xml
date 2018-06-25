@@ -19,6 +19,21 @@
 		<hibernate-core.version>5.2.17.Final</hibernate-core.version>
 		<spring-data-jpa.version>2.0.7.RELEASE</spring-data-jpa.version>
 	</properties>
+	<!-- 把自己的jar包上传到maven nexus仓库 -->
+	<distributionManagement>
+		<repository>
+			<uniqueVersion>false</uniqueVersion>
+			<id>releases</id>
+			<name>Internal Repository</name>
+			<url>http://nexus.scm.it/nexus/content/repositories/releases/</url>
+		</repository>
+		<snapshotRepository>
+			<uniqueVersion>true</uniqueVersion>
+			<id>snapshots</id>
+			<name>Internal Snapshots</name>
+			<url>http://nexus.scm.it/nexus/content/repositories/snapshots/</url>
+		</snapshotRepository>
+	</distributionManagement>
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework</groupId>

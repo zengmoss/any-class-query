@@ -6,6 +6,7 @@ import java.util.Map;
 import java.util.function.Function;
 
 import javax.persistence.EntityManager;
+import javax.swing.text.html.HTMLDocument.HTMLReader.IsindexAction;
 
 import org.hibernate.Query;
 import org.hibernate.transform.ResultTransformer;
@@ -17,7 +18,7 @@ import org.springframework.core.convert.support.DefaultConversionService;
 import help.mygod.query.constant.Constant;
 import help.mygod.query.instance.ClassMappedField;
 import help.mygod.query.util.BasicTypeUtil;
-import help.mygod.query.util.StringUtil;
+import help.mygod.query.util.StringUtil;import javassist.expr.Instanceof;
 
 public class AnyClassQuery {
 
@@ -56,6 +57,9 @@ public class AnyClassQuery {
 
 					@Override
 					public Object transformTuple(Object[] tuple, String[] aliases) {
+						if((t.equals(Boolean.class) || t.equals(boolean.class)) && tuple[0] instanceof Number) {
+							return ((Number)tuple[0]).intValue() > 0;
+						}
 						return DefaultConversionService.getSharedInstance().convert(tuple[0], t);
 					}
 
