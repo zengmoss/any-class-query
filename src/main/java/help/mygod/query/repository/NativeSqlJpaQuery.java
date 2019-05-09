@@ -18,6 +18,10 @@ public class NativeSqlJpaQuery extends AbstractJpaQuery {
 		super(jpaQueryMethod, em);
 		this.querySql = querySql;
 	}
+	@Override
+	public Object execute(Object[] parameters) {
+		return getExecution().execute(this, parameters);
+	}
 
 	/*
 	 * (non-Javadoc)

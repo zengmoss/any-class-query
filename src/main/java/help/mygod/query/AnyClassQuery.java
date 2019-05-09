@@ -6,7 +6,6 @@ import java.util.Map;
 import java.util.function.Function;
 
 import javax.persistence.EntityManager;
-import javax.swing.text.html.HTMLDocument.HTMLReader.IsindexAction;
 
 import org.hibernate.Query;
 import org.hibernate.transform.ResultTransformer;
@@ -18,7 +17,7 @@ import org.springframework.core.convert.support.DefaultConversionService;
 import help.mygod.query.constant.Constant;
 import help.mygod.query.instance.ClassMappedField;
 import help.mygod.query.util.BasicTypeUtil;
-import help.mygod.query.util.StringUtil;import javassist.expr.Instanceof;
+import help.mygod.query.util.StringUtil;
 
 public class AnyClassQuery {
 

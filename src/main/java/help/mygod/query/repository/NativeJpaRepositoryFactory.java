@@ -28,4 +28,6 @@ public class NativeJpaRepositoryFactory extends JpaRepositoryFactory {
 																   EvaluationContextProvider evaluationContextProvider) {
 		return Optional.of(NativeQueryLookupStrategy.create(entityManager, key, extractor, evaluationContextProvider));
 	}
+	
+	
 }
