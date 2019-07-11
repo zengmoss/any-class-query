@@ -1,5 +1,8 @@
 package help.mygod.query.repository;
 
+import java.util.Collection;
+import java.util.stream.Collectors;
+
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
@@ -9,6 +12,7 @@ import org.springframework.data.repository.query.ResultProcessor;
 import org.springframework.data.repository.query.ReturnedType;
 
 import help.mygod.query.AnyClassQuery;
+import help.mygod.query.constant.Constant;
 
 public class NativeSqlJpaQuery extends AbstractJpaQuery {
 
@@ -36,6 +40,13 @@ public class NativeSqlJpaQuery extends AbstractJpaQuery {
 		ReturnedType returnedType = resultFactory.getReturnedType();
 		@SuppressWarnings("rawtypes")
 		Class clazz = returnedType.getReturnedType();
+		Object o;
+		for(int i = 0; i < values.length; i++) {
+			o = values[i];
+			if(o instanceof Collection) {
+				values[i] = ((Collection)o).stream().map(String::valueOf).collect(Collectors.joining(Constant.COMMA));
+			}
+		}
 		return AnyClassQuery.createSQLQuery(getEntityManager(), this.querySql, 1, values)
 				.setResultTransformer(AnyClassQuery.createSQLQueryClassResult(clazz));
 	}

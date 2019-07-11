@@ -10,8 +10,9 @@ import org.springframework.data.jpa.repository.query.JpaQueryMethod;
 import org.springframework.data.projection.ProjectionFactory;
 import org.springframework.data.repository.core.NamedQueries;
 import org.springframework.data.repository.core.RepositoryMetadata;
-import org.springframework.data.repository.query.EvaluationContextProvider;
+import org.springframework.data.repository.query.QueryMethodEvaluationContextProvider;
 import org.springframework.data.repository.query.QueryLookupStrategy;
+import org.springframework.data.repository.query.QueryMethodEvaluationContextProvider;
 import org.springframework.data.repository.query.RepositoryQuery;
 
 import help.mygod.query.annotation.AnyNativeQuery;
@@ -25,7 +26,7 @@ public class NativeQueryLookupStrategy implements QueryLookupStrategy {
 	private QueryExtractor extractor;
 
 	public NativeQueryLookupStrategy(EntityManager entityManager, Key key, QueryExtractor extractor,
-			EvaluationContextProvider evaluationContextProvider) {
+			QueryMethodEvaluationContextProvider evaluationContextProvider) {
 		this.jpaQueryLookupStrategy = JpaQueryLookupStrategy.create(entityManager, key, extractor,
 				evaluationContextProvider);
 		this.extractor = extractor;
@@ -33,7 +34,7 @@ public class NativeQueryLookupStrategy implements QueryLookupStrategy {
 	}
 
 	public static QueryLookupStrategy create(EntityManager entityManager, Key key, QueryExtractor extractor,
-			EvaluationContextProvider evaluationContextProvider) {
+			QueryMethodEvaluationContextProvider evaluationContextProvider) {
 		return new NativeQueryLookupStrategy(entityManager, key, extractor, evaluationContextProvider);
 	}
 
