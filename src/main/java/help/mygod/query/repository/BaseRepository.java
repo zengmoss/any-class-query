@@ -9,6 +9,7 @@
 package help.mygod.query.repository;
 
 import java.util.Collection;
+import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
@@ -28,4 +29,5 @@ public interface BaseRepository<T, ID>
 		extends JpaRepository<T, ID>, JpaSpecificationExecutor<T>, PagingAndSortingRepository<T, ID> {
 
 	void deleteByIds(Collection<ID> ids);
+	List<T> findByIds(Collection<ID> ids);
 }
