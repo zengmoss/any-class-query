@@ -65,7 +65,7 @@ public class BaseRepositoryImpl<T, ID> extends SimpleJpaRepository<T, ID> implem
 	@SuppressWarnings("unchecked")
 	public List<T> findByIds(Collection<ID> ids) {
 		if(null != ids && !ids.isEmpty()) {
-			return em.createQuery("select * from " + entityInformation.getEntityName() + " where id in ("
+			return em.createQuery(" from " + entityInformation.getEntityName() + " where id in ("
 					+ ids.stream().map(String::valueOf).collect(Collectors.joining(","))
 					+ ")").getResultList();
 		}
