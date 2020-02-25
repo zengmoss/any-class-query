@@ -7,7 +7,7 @@ import java.util.function.Function;
 
 import javax.persistence.EntityManager;
 
-import org.hibernate.Query;
+import org.hibernate.query.Query;
 import org.hibernate.transform.ResultTransformer;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.BeanWrapper;
